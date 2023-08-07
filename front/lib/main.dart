@@ -1,7 +1,10 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+import 'package:front/login.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(LoginScreen());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +15,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: AppBar(),
+        // appBar: AppBar(),
+        body: LoginScreen(),
       ),
     );
   }
