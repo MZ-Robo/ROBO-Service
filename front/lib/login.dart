@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:front/home.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'signup.dart';
 
@@ -88,7 +89,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomeScreen()),
+                        );
+                      },
                       child: Text(
                         '로그인',
                         style: TextStyle(

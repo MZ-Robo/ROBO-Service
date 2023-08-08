@@ -1,10 +1,11 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:front/home.dart';
 import 'package:front/login.dart';
 
 void main() {
-  runApp(LoginScreen());
+  runApp(HomeScreen());
 }
 
 class MyApp extends StatelessWidget {
