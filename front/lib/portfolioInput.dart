@@ -31,17 +31,17 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                 ),
                 child: Stack(
                   children: [
-                    Positioned(
-                      // time6Wd (I10:1042;3:44)
-                      left: 32,
-                      top: 13,
-                      child: Align(
-                        child: SizedBox(
-                          width: 31,
-                          height: 21,
-                        ),
-                      ),
-                    ),
+                    // Positioned(
+                    //   // time6Wd (I10:1042;3:44)
+                    //   left: 32,
+                    //   top: 13,
+                    //   child: Align(
+                    //     child: SizedBox(
+                    //       width: 31,
+                    //       height: 21,
+                    //     ),
+                    //   ),
+                    // ),
                     Positioned(
                       // iosiconstatusbaryqK (I10:1042;3:45)
                       left: 0,
@@ -69,13 +69,8 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
               Container(
                 // iconamoonarrowup2thinhoF (16:385)
                 margin: EdgeInsets.fromLTRB(0, 0, 314.54, 35.79),
-                width: 7.71,
-                height: 15.42,
                 child: Container(
-                  // autogroupnaxuDh3 (D5CgSbdHiJhfqwVhCgnaxu)
-                  width: 7.71,
-                  height: 15.42,
-                  child: Image.asset('assets/bell.png', fit: BoxFit.fill),
+                  child: Image.asset('assets/before.png', fit: BoxFit.fill),
                 ),
               ),
               Container(
@@ -84,17 +79,31 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                 child: Text(
                   '지금 포트폴리오 진단을 받아보세요!',
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 17,
+                    fontFamily: 'Pretendard',
+                    fontWeight: FontWeight.w500,
+                    height: 1.88,
+                    letterSpacing: -0.32,
+                  ),
                 ),
               ),
               Container(
                 // oooueR (10:770)
                 margin: EdgeInsets.fromLTRB(0, 0, 1, 0),
-                constraints: BoxConstraints(
-                  maxWidth: 157,
-                ),
+                constraints: BoxConstraints(),
                 child: Text(
                   '쉬운 투자 관리의 시작\nOOO와 함께해요  ',
                   textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF020202),
+                    fontSize: 25,
+                    fontFamily: 'Pretendard',
+                    fontWeight: FontWeight.w600,
+                    height: 1.28,
+                    letterSpacing: -0.32,
+                  ),
                 ),
               ),
               Container(
@@ -107,7 +116,7 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                     Container(
                       // autogroupccn1uH3 (D5Cf7ifinkrbCt147UCCn1)
                       margin: EdgeInsets.fromLTRB(0, 0, 2, 70),
-                      padding: EdgeInsets.fromLTRB(14, 16, 15, 19),
+                      padding: EdgeInsets.fromLTRB(14, 10, 15, 13),
                       width: 292,
                       decoration: BoxDecoration(
                         color: Color(0xffd9d9d9),
@@ -117,7 +126,7 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                         children: [
                           Container(
                             // autogroupcwjb1qs (D5CfDJLkoW5KxYLQxvcwjb)
-                            margin: EdgeInsets.fromLTRB(0, 0, 0, 231),
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 180),
                             width: 263,
                             height: 1,
                             child: Container(
@@ -130,7 +139,7 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                           ),
                           Container(
                             // j1B (16:521)
-                            margin: EdgeInsets.fromLTRB(0, 0, 42, 0),
+                            margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
                             child: Text(
                               '포트폴리오 진단 예시 목업',
                             ),
@@ -140,7 +149,7 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                     ),
                     Container(
                       // autogroupit93e89 (D5CfK8WNfd97VSWFb1it93)
-                      margin: EdgeInsets.fromLTRB(0, 0, 0, 25),
+                      margin: EdgeInsets.fromLTRB(0, 0, 0, 12),
                       width: double.infinity,
                       height: 60,
                       decoration: BoxDecoration(
@@ -151,6 +160,14 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                         child: Text(
                           '주식 계좌 자동 연동하기',
                           textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18,
+                            fontFamily: 'Pretendard',
+                            fontWeight: FontWeight.w500,
+                            height: 1.78,
+                            letterSpacing: -0.32,
+                          ),
                         ),
                       ),
                     ),
@@ -160,6 +177,14 @@ class _PortfolioInputScreenState extends State<PortfolioInputScreen> {
                       child: Text(
                         '주식 계좌 수동 연동하기 ',
                         textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Color(0xFFB4B4B4),
+                          fontSize: 18,
+                          fontFamily: 'Pretendard',
+                          fontWeight: FontWeight.w500,
+                          height: 1.78,
+                          letterSpacing: -0.32,
+                        ),
                       ),
                     ),
                   ],

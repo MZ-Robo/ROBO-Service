@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:front/home.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'signup.dart';
+//UI 배치 완료
 
 class PortfolioResultScreen extends StatefulWidget {
   @override

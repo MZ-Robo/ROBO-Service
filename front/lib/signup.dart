@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 // import 'package:flutter_svg/flutter_svg.dart';
 import 'login.dart';
-
-//DB에 중복되는 아이디 판단하는 것은 DB 개발 후 진행해주세요!
+//디자인 안나왔음. 그냥 함.
 
 class SignupScreen extends StatefulWidget {
   @override
