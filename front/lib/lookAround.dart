@@ -1,3 +1,5 @@
+// import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 //1080*2220
@@ -11,7 +13,7 @@ class _LookAroundState extends State<LookAround> {
   final double lowbarHeight = 86;
   // final double paddingValue = 60;
 
-  Widget _buildCircleContainer(String name) {
+  Widget _topPortfolio(String name) {
     return Container(
       margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
       width: 111,
@@ -34,6 +36,66 @@ class _LookAroundState extends State<LookAround> {
               fontSize: 10,
               fontFamily: 'Pretendard',
               fontWeight: FontWeight.w400,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _newsUpload(String datetime, String source, String title, String Img) {
+    return Container(
+      // height: 45,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                  // height: 44,
+                ),
+                Container(
+                  // T2Z (172:681)
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                  child: Text(
+                    '$datetime  ㅣ  $source',
+                    style: TextStyle(
+                      fontFamily: 'Pretendard',
+                      fontSize: 8,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2575,
+                      color: Color(0xff8b8b8b),
+                    ),
+                  ),
+                ),
+                Container(
+                  // AxZ (172:680)
+                  margin: EdgeInsets.fromLTRB(0, 0, 0, 24),
+                  child: Text(
+                    '$title',
+                    style: TextStyle(
+                      fontFamily: 'Pretendard',
+                      fontSize: 9.5,
+                      fontWeight: FontWeight.w400,
+                      height: 1.2575,
+                      color: Color(0xff000000),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          SizedBox(
+            // margin: EdgeInsets.fromLTRB(200, 0, 0, 0),
+
+            width: 62,
+            height: 44,
+            child: Image.asset(
+              '$Img',
+              fit: BoxFit.fill,
             ),
           ),
         ],
@@ -201,161 +263,12 @@ class _LookAroundState extends State<LookAround> {
                                 SingleChildScrollView(
                                   scrollDirection: Axis.horizontal,
                                   child: Row(children: [
-                                    // Container(
-                                    //   margin: EdgeInsets.fromLTRB(0, 0, 0, 10),
-                                    //   height: 130,
-                                    //   width: 444,
-                                    //   child: Row(children: []),
-                                    // )
-                                    _buildCircleContainer('이윤아'),
-                                    _buildCircleContainer('정종하'),
-                                    _buildCircleContainer('최예린'),
-                                    _buildCircleContainer('김현동'),
+                                    _topPortfolio('이윤아'),
+                                    _topPortfolio('정종하'),
+                                    _topPortfolio('최예린'),
+                                    _topPortfolio('김현동'),
                                   ]),
                                 )
-                                //       SingleChildScrollView(
-                                //         scrollDirection: Axis.horizontal,
-                                //         child: Row(
-                                //           children: [
-                                //             Container(
-                                //               // frame1pRX (172:660)
-                                //               margin:
-                                //                   EdgeInsets.fromLTRB(0, 0, 0, 11),
-                                //               width: double.infinity,
-                                //               child: Row(
-                                //                 crossAxisAlignment:
-                                //                     CrossAxisAlignment.center,
-                                //                 children: [
-                                //                   Container(
-                                //                     // ellipse19YMX (172:661)
-                                //                     width: 99,
-                                //                     height: 99,
-                                //                     decoration: BoxDecoration(
-                                //                       borderRadius:
-                                //                           BorderRadius.circular(49.5),
-                                //                       color: Color(0xffd9d9d9),
-                                //                       // image:  DecorationImage (
-                                //                       // fit:  BoxFit.cover,
-                                //                       // image:  NetworkImage (
-                                //                       //   [Image url]
-                                //                       // ),
-                                //                       // ),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 16,
-                                //                   ),
-                                //                   Container(
-                                //                     // ellipse20qLd (172:662)
-                                //                     width: 99,
-                                //                     height: 99,
-                                //                     decoration: BoxDecoration(
-                                //                       borderRadius:
-                                //                           BorderRadius.circular(49.5),
-                                //                       color: Color(0xffd9d9d9),
-                                //                       // image:  DecorationImage (
-                                //                       //   fit:  BoxFit.cover,
-                                //                       //   image:  NetworkImage (
-                                //                       //     [Image url]
-                                //                       //   ),
-                                //                       // ),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 16,
-                                //                   ),
-                                //                   Container(
-                                //                     // ellipse21jwo (172:663)
-                                //                     width: 99,
-                                //                     height: 99,
-                                //                     decoration: BoxDecoration(
-                                //                       borderRadius:
-                                //                           BorderRadius.circular(49.5),
-                                //                       color: Color(0xffd9d9d9),
-                                //                       // image:  DecorationImage (
-                                //                       //   fit:  BoxFit.cover,
-                                //                       //   image:  NetworkImage (
-                                //                       //     [Image url]
-                                //                       //   ),
-                                //                       // ),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 16,
-                                //                   ),
-                                //                   Container(
-                                //                     // ellipse234UH (172:664)
-                                //                     width: 99,
-                                //                     height: 99,
-                                //                     decoration: BoxDecoration(
-                                //                       borderRadius:
-                                //                           BorderRadius.circular(49.5),
-                                //                       color: Color(0xffd9d9d9),
-                                //                       // image:  DecorationImage (
-                                //                       //   fit:  BoxFit.cover,
-                                //                       //   image:  NetworkImage (
-                                //                       //     [Image url]
-                                //                       //   ),
-                                //                       // ),
-                                //                     ),
-                                //                   ),
-                                //                 ],
-                                //               ),
-                                //             ),
-                                //             Container(
-                                //               // autogroupjns5oRs (WmoCtPdbr3TX8B8a5djNS5)
-                                //               margin:
-                                //                   EdgeInsets.fromLTRB(36, 0, 62, 0),
-                                //               width: double.infinity,
-                                //               child: Row(
-                                //                 crossAxisAlignment:
-                                //                     CrossAxisAlignment.center,
-                                //                 children: [
-                                //                   Text(
-                                //                     // YPT (172:657)
-                                //                     '이윤아',
-                                //                     style: TextStyle(
-                                //                       fontFamily: 'Pretendard',
-                                //                       fontSize: 10,
-                                //                       fontWeight: FontWeight.w400,
-                                //                       height: 1.2575,
-                                //                       color: Color(0xff000000),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 96,
-                                //                   ),
-                                //                   Text(
-                                //                     // gEm (172:658)
-                                //                     '정종하',
-                                //                     style: TextStyle(
-                                //                       fontFamily: 'Pretendard',
-                                //                       fontSize: 10,
-                                //                       fontWeight: FontWeight.w400,
-                                //                       height: 1.2575,
-                                //                       color: Color(0xff000000),
-                                //                     ),
-                                //                   ),
-                                //                   SizedBox(
-                                //                     width: 96,
-                                //                   ),
-                                //                   Text(
-                                //                     // oaH (172:659)
-                                //                     '최예린',
-                                //                     style: TextStyle(
-                                //                       fontFamily: 'Pretendard',
-                                //                       fontSize: 10,
-                                //                       fontWeight: FontWeight.w400,
-                                //                       height: 1.2575,
-                                //                       color: Color(0xff000000),
-                                //                     ),
-                                //                   ),
-                                //                 ],
-                                //               ),
-                                //             ),
-                                //           ],
-                                //         ),
-                                //       ),
                               ],
                             ),
                           ),
@@ -386,191 +299,30 @@ class _LookAroundState extends State<LookAround> {
                             // autogroupsdcuazM (WmoD7PFx7dS1gabU6Wsdcu)
                             margin: EdgeInsets.fromLTRB(13, 0, 24, 18),
                             width: double.infinity,
-                            height: 200,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                            child: Column(
                               children: [
-                                Container(
-                                  // autogroupzs1t7jP (WmoDPHy7KGwQ1S9HRSZs1T)
-                                  margin: EdgeInsets.fromLTRB(0, 0, 112, 0),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        // T2Z (172:681)
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                        child: Text(
-                                          '2023/07/30 17:42  ㅣ  아주경제',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff8b8b8b),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // AxZ (172:680)
-                                        margin:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 24),
-                                        child: Text(
-                                          '조정 받나 했더니...개인투자자 “그래도 이차전지"',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 9.5,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // t7s (172:683)
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                        child: Text(
-                                          '2023/07/30 18:42  ㅣ  파이낸셜뉴스',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff8b8b8b),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // yQD (172:682)
-                                        margin:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 24),
-                                        child: Text(
-                                          '8월 중기 경기전망지수 3개월만에 반등',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 9.5,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // HQu (172:685)
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 4),
-                                        child: Text(
-                                          '2023/07/30 12:00  ㅣ  이투데이',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff8b8b8b),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // Cnm (172:684)
-                                        margin:
-                                            EdgeInsets.fromLTRB(0, 0, 0, 25),
-                                        child: Text(
-                                          '코로나로 수출 줄어든 기업, 수출 늘어난 기업의 1.8배',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 9.5,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ),
-                                      Container(
-                                        // hjX (172:692)
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                                        child: Text(
-                                          '2023/07/30 18:09  ㅣ  이데일리',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 8,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff8b8b8b),
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        // crV (172:691)
-                                        '비과세/감면 92% 연장...멀어지는 건전재정',
-                                        style: TextStyle(
-                                          fontFamily: 'Pretendard',
-                                          fontSize: 9.5,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.2575,
-                                          color: Color(0xff000000),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  // frame2Yk9 (172:686)
-                                  height: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
-                                    children: [
-                                      SizedBox(
-                                        // rectangle112hsw (172:687)
-                                        width: 62,
-                                        height: 44,
-                                        // child:
-// Image.network(
-//   [Image url]
-//   fit:  BoxFit.cover,
-// ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      SizedBox(
-                                        // rectangle113Row (172:688)
-                                        width: 62,
-                                        height: 44,
-//   child:
-// Image.network(
-//   [Image url]
-//   fit:  BoxFit.cover,
-// ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      SizedBox(
-                                        // rectangle115AmX (172:689)
-                                        width: 62,
-                                        height: 44,
-//   child:
-// Image.network(
-//   [Image url]
-//   fit:  BoxFit.cover,
-// ),
-                                      ),
-                                      SizedBox(
-                                        height: 8,
-                                      ),
-                                      SizedBox(
-                                        // rectangle116uDK (172:690)
-                                        width: 62,
-                                        height: 44,
-//   child:
-// Image.network(
-//   [Image url]
-//   fit:  BoxFit.cover,
-// ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
+                                _newsUpload(
+                                    '2023/07/30 17:42',
+                                    '아주경제',
+                                    '조정 받나 했더니...개인투자자 “그래도 이차전지"',
+                                    'assets/Rectangle112.png'),
+                                const SizedBox(height: 12),
+                                _newsUpload(
+                                    '2023/07/30 18:42',
+                                    '파이낸셜뉴스',
+                                    '8월 중기 경기전망지수 3개월만에 반등',
+                                    'assets/Rectangle112.png'),
+                                const SizedBox(height: 8),
+                                _newsUpload(
+                                    '2023/07/30 12:00',
+                                    '이투데이',
+                                    '코로나로 수출 줄어든 기업, 수출 늘어난 기업의 1.8배',
+                                    'assets/Rectangle112.png'),
+                                _newsUpload(
+                                    '2023/07/30 18:09',
+                                    '이데일리',
+                                    '비과세/감면 92% 연장...멀어지는 건전재정',
+                                    'assets/Rectangle112.png'),
                               ],
                             ),
                           ),
