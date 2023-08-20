@@ -45,7 +45,6 @@ class _LookAroundState extends State<LookAround> {
 
   Widget _newsUpload(String datetime, String source, String title, String Img) {
     return Container(
-      // height: 45,
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

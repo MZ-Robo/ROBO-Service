@@ -212,7 +212,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => SignupScreen()));
+                      },
                       child: Text(
                         '아직 회원이 아니신가요?',
                         textAlign: TextAlign.center,
