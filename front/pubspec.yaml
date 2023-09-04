@@ -71,6 +71,8 @@ flutter:
     - assets/cloud.png
     - assets/plus.png
     - assets/check.png
+    - assets/checkbox.png
+    - assets/diagnosis.png
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
   # the material Icons class.
