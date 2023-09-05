@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:front/lowbar.dart';
 
 //1080*2220
 class LookAround extends StatefulWidget {
@@ -102,11 +103,74 @@ class _LookAroundState extends State<LookAround> {
     );
   }
 
+  Widget _letter(String title, String link) {
+    return                           Container(
+                            // autogroupwtqfGzu (WmoDywe3NAsNqBP1Tnwtqf)
+                            margin: EdgeInsets.fromLTRB(0, 0, 14, 27),
+                            width: double.infinity,
+                            height: 37,
+                            child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  // autogroup9mezQbK (WmoEBbyH6Qzwtyighy9meZ)
+                                  margin: EdgeInsets.fromLTRB(0, 0, 116, 0),
+                                  height: double.infinity,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        // 9oo (172:671)
+                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
+                                        child: Text(
+                                          '초보 주식 투자자가 갖는 4가지 착각에 대하여',
+                                          style: TextStyle(
+                                            fontFamily: 'Pretendard',
+                                            fontSize: 12,
+                                            fontWeight: FontWeight.w400,
+                                            height: 1.2575,
+                                            color: Color(0xff000000),
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        // f1T (172:672)
+                                        '#현명한 주식 투자 마인드 #투자 습관',
+                                        style: TextStyle(
+                                          fontFamily: 'Pretendard',
+                                          fontSize: 9.5,
+                                          fontWeight: FontWeight.w400,
+                                          height: 1.2575,
+                                          color: Color(0xff8d8d8d),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                SizedBox(
+                                  // rectangle110zpR (172:673)
+                                  width: 59,
+                                  height: 33,
+                                  child: ClipRRect(
+                                    borderRadius: BorderRadius.circular(10),
+//   child:
+// Image.network(
+//   [Image url]
+//   fit:  BoxFit.cover,
+// ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
       // width: MediaQuery.of(context).size.width - lowbarWidth,
-      height: MediaQuery.of(context).size.height - lowbarHeight,
+      // height: MediaQuery.of(context).size.height - lowbarHeight,
       child: Padding(
         padding: EdgeInsets.fromLTRB(13, 0, 13, 0),
         child: Column(
@@ -421,66 +485,6 @@ class _LookAroundState extends State<LookAround> {
                             ),
                           ),
                           Container(
-                            // autogroupwtqfGzu (WmoDywe3NAsNqBP1Tnwtqf)
-                            margin: EdgeInsets.fromLTRB(0, 0, 14, 27),
-                            width: double.infinity,
-                            height: 37,
-                            child: Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Container(
-                                  // autogroup9mezQbK (WmoEBbyH6Qzwtyighy9meZ)
-                                  margin: EdgeInsets.fromLTRB(0, 0, 116, 0),
-                                  height: double.infinity,
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Container(
-                                        // 9oo (172:671)
-                                        margin: EdgeInsets.fromLTRB(0, 0, 0, 9),
-                                        child: Text(
-                                          '초보 주식 투자자가 갖는 4가지 착각에 대하여',
-                                          style: TextStyle(
-                                            fontFamily: 'Pretendard',
-                                            fontSize: 12,
-                                            fontWeight: FontWeight.w400,
-                                            height: 1.2575,
-                                            color: Color(0xff000000),
-                                          ),
-                                        ),
-                                      ),
-                                      Text(
-                                        // f1T (172:672)
-                                        '#현명한 주식 투자 마인드 #투자 습관',
-                                        style: TextStyle(
-                                          fontFamily: 'Pretendard',
-                                          fontSize: 9.5,
-                                          fontWeight: FontWeight.w400,
-                                          height: 1.2575,
-                                          color: Color(0xff8d8d8d),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                SizedBox(
-                                  // rectangle110zpR (172:673)
-                                  width: 59,
-                                  height: 33,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(10),
-//   child:
-// Image.network(
-//   [Image url]
-//   fit:  BoxFit.cover,
-// ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
                             // autogroupfh77wDs (WmoELGPWc8ywbv2ciZFH77)
                             margin: EdgeInsets.fromLTRB(0, 0, 14, 0),
                             width: double.infinity,
@@ -547,6 +551,7 @@ class _LookAroundState extends State<LookAround> {
                 ),
               ),
             ),
+            LowBarUnit(),
           ],
         ),
       ),

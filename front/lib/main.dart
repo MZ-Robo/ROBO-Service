@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         // appBar: AppBar(),
-        body: HomeScreen(),
+        body: LookAround(),
       ),
     );
   }

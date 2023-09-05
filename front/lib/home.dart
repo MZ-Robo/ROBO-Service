@@ -225,6 +225,75 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _weatherBox() {
+    return Container(
+      width: 73,
+      height: 170,
+      decoration: ShapeDecoration(
+        color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(40),
+        ),
+        shadows: [
+          BoxShadow(
+            color: Color(0x3F000000),
+            offset: Offset(1, 3),
+          ),
+        ],
+      ),
+      child: Column(
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 21),
+            child: Text(
+              '08/13',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                color: Color(0xFFB4B4B4),
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 5),
+            width: 32,
+            height: 13,
+            decoration: ShapeDecoration(
+                color: Color(0xFFD3E6FD),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(20),
+                )),
+            child: Center(
+              child: Text(
+                '+0.55',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Color(0xFF0E3FF2), //수익 파랑, 손해 빨강
+                    fontSize: 6,
+                    fontWeight: FontWeight.w600),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 5),
+            // width: 46,
+            // height: 44,
+            color: Colors.white,
+            child: Image.asset(
+              'assets/Group9218.png',
+              fit: BoxFit.fill,
+            ),
+          ),
+          Container(
+            height: 8,
+          ),
+          _plusCircle(),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -304,6 +373,37 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ),
                             _SunriseSunset(),
+                            Positioned(
+                              child: Container(
+                                width: 381,
+                                height: 231,
+                                margin: EdgeInsets.only(
+                                    top: 840, left: 35, bottom: 31),
+                                decoration: ShapeDecoration(
+                                  color: Colors.white
+                                      .withOpacity(0.30000001192092896),
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.only(
+                                      topLeft: Radius.circular(32),
+                                      bottomLeft: Radius.circular(32),
+                                    ),
+                                  ),
+                                ),
+                                child: SingleChildScrollView(
+                                  scrollDirection: Axis.horizontal,
+                                  child: Row(children: [
+                                    SizedBox(width: 20),
+                                    _weatherBox(),
+                                    SizedBox(width: 20),
+                                    _weatherBox(),
+                                    SizedBox(width: 20),
+                                    _weatherBox(),
+                                    SizedBox(width: 20),
+                                    _weatherBox(),
+                                  ]),
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -312,16 +412,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            // Container(
-            //   height: 85,
-            //   child: Row(
-            //     children: [
-            //       Container(),
-            //       Container(),
-            //       Container(),
-            //     ],
-            //   ),
-            // ),
+            //하단바
             LowBarUnit(),
           ],
         ),
