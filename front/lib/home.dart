@@ -10,8 +10,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final double lowbarHeight = 86;
-
   Widget _whatIs(String text) {
     return IntrinsicWidth(
       child: Container(
@@ -308,8 +306,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Expanded(
               child: Container(
-                // height: 1283,
-                // height: MediaQuery.of(context).size.height - lowbarHeight,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
