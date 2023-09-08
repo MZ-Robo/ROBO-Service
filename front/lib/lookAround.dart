@@ -1,7 +1,13 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+
 import 'package:front/lowbar.dart';
+import 'package:front/url.dart';
+
+import 'package:http/http.dart' as http;
+import 'package:html/parser.dart' show parse;
+import 'package:url_launcher/url_launcher.dart';
 
 //1080*2220
 class LookAround extends StatefulWidget {
@@ -13,6 +19,37 @@ class _LookAroundState extends State<LookAround> {
   final double lowbarWidth = 375;
   final double lowbarHeight = 86;
   // final double paddingValue = 60;
+
+  //news
+  List<String> news = [];
+  List<String> newsThumbnails = [];
+
+  //youtube
+  List<String> videoLinks = [
+    'https://wnewsww.youtube.com/watch?v=lDWGPapR-_U',
+  ];
+  List<String> videoThumbnails = [
+    'https://i.ytimg.com/vi/lDWGPapR-_U/hq720.jpg?sqp=-oaymwEcCNAFEJQDSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAef_WCCA-thZWfnnqrj2M6Nxwz6w',
+  ];
+  final searchRepository = SearchRepository(); // SearchRepository 객체를 생성합니다.
+  List<NewsItem> newsList = [];
+
+  @override
+  initState() {
+    super.initState();
+    fetchNewsList();
+    print("newList : $newsList");
+  }
+
+  Future<void> fetchNewsList() async {
+    final fetchedNewsList = await searchRepository.getNaverNewsSearch();
+
+    setState(() {
+      newsList = fetchedNewsList; // 뉴스 리스트를 업데이트합니다.
+    });
+
+    print("newList : $newsList");
+  }
 
   Widget _topPortfolio(String name) {
     return Container(
@@ -44,61 +81,96 @@ class _LookAroundState extends State<LookAround> {
     );
   }
 
-  Widget _newsUpload(String datetime, String source, String title, String Img) {
-    return Container(
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  // height: 44,
-                ),
-                Container(
-                  // T2Z (172:681)
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                  child: Text(
-                    '$datetime  ㅣ  $source',
-                    style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontSize: 8,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2575,
-                      color: Color(0xff8b8b8b),
+  Widget _newsUpload(String datetime, String source, String title, String Img,
+      String newsUrl) {
+    return InkWell(
+      onTap: () async {
+        if (await canLaunch(newsUrl)) {
+          await launch(newsUrl);
+        } else {
+          throw 'Could not launch $newsUrl';
+        }
+      },
+      child: Container(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                  ),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 5),
+                    child: Text(
+                      '$datetime  ㅣ  $source',
+                      style: TextStyle(
+                        fontFamily: 'Pretendard',
+                        fontSize: 8,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2575,
+                        color: Color(0xff8b8b8b),
+                      ),
                     ),
                   ),
-                ),
-                Container(
-                  // AxZ (172:680)
-                  margin: EdgeInsets.fromLTRB(0, 0, 0, 24),
-                  child: Text(
-                    '$title',
-                    style: TextStyle(
-                      fontFamily: 'Pretendard',
-                      fontSize: 9.5,
-                      fontWeight: FontWeight.w400,
-                      height: 1.2575,
-                      color: Color(0xff000000),
+                  Container(
+                    margin: EdgeInsets.fromLTRB(0, 0, 0, 24),
+                    child: Text(
+                      '$title',
+                      style: TextStyle(
+                        fontFamily: 'Pretendard',
+                        fontSize: 9.5,
+                        fontWeight: FontWeight.w400,
+                        height: 1.2575,
+                        color: Color(0xff000000),
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            // margin: EdgeInsets.fromLTRB(200, 0, 0, 0),
+            SizedBox(
+              width: 80,
+              height: 60,
+              child: Image.asset(
+                '$Img',
+                fit: BoxFit.fill,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 
-            width: 62,
-            height: 44,
-            child: Image.asset(
-              '$Img',
-              fit: BoxFit.fill,
-            ),
+  Widget _youtube(String videoUrl) {
+    return Container(
+      margin: EdgeInsets.fromLTRB(0, 0, 10, 0),
+      width: 218,
+      height: 123,
+      decoration: ShapeDecoration(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            width: 0.50,
+            color: Color(0xFFE7E7E7),
           ),
-        ],
+          borderRadius: BorderRadius.circular(20),
+        ),
+        color: Colors.blue, // 동그라미의 색상
+      ),
+      child: ElevatedButton(
+        onPressed: () async {
+          final url = Uri.parse(videoUrl);
+          if (await canLaunchUrl(url)) {
+            launchUrl(url);
+          } else {
+            // ignore: avoid_print
+            print("Can't launch $url");
+          }
+        },
+        child: null,
       ),
     );
   }
@@ -352,33 +424,36 @@ class _LookAroundState extends State<LookAround> {
                         ),
                       ),
                       Container(
-                        // autogroupsdcuazM (WmoD7PFx7dS1gabU6Wsdcu)
                         margin: EdgeInsets.fromLTRB(26, 0, 24, 18),
-                        // width: double.infinity,
                         child: Column(
                           children: [
                             _newsUpload(
-                                '2023/07/30 17:42',
-                                '아주경제',
-                                '조정 받나 했더니...개인투자자 “그래도 이차전지"',
-                                'assets/Rectangle112.png'),
+                                '2023/08/25 17:02',
+                                'YTN뉴스',
+                                '중국 경제 불확실성...韓 경제성장률 전망치 또 낮췄다',
+                                'assets/ytnNews.jpg',
+                                'https://www.ytn.co.kr/_ln/0102_202308251702528969'),
                             const SizedBox(height: 12),
                             _newsUpload(
                                 '2023/07/30 18:42',
                                 '파이낸셜뉴스',
                                 '8월 중기 경기전망지수 3개월만에 반등',
-                                'assets/Rectangle112.png'),
+                                'assets/Rectangle112.png',
+                                'https://www.youtube.com/watch?v=lDWGPapR-_U'),
                             const SizedBox(height: 8),
                             _newsUpload(
                                 '2023/07/30 12:00',
                                 '이투데이',
                                 '코로나로 수출 줄어든 기업, 수출 늘어난 기업의 1.8배',
-                                'assets/Rectangle112.png'),
+                                'assets/Rectangle112.png',
+                                'https://www.youtube.com/watch?v=lDWGPapR-_U'),
+                            const SizedBox(height: 8),
                             _newsUpload(
                                 '2023/07/30 18:09',
                                 '이데일리',
                                 '비과세/감면 92% 연장...멀어지는 건전재정',
-                                'assets/Rectangle112.png'),
+                                'assets/Rectangle112.png',
+                                'https://www.youtube.com/watch?v=lDWGPapR-_U'),
                           ],
                         ),
                       ),
@@ -426,40 +501,19 @@ class _LookAroundState extends State<LookAround> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-//                             Container(
-//                               // autogroupx2hfxau (WmoDms9qDdfPoKKCbtx2Hf)
-//                               margin: EdgeInsets.fromLTRB(0, 0, 0, 28),
-//                               width: double.infinity,
-//                               child: Row(
-//                                 crossAxisAlignment: CrossAxisAlignment.center,
-//                                 children: [
-//                                   Container(
-//                                     // rectangle107hoP (172:645)
-//                                     margin: EdgeInsets.fromLTRB(0, 0, 15, 0),
-//                                     width: 218,
-//                                     height: 123,
-//                                     child: ClipRRect(
-//                                       borderRadius: BorderRadius.circular(20),
-// //   child:
-// // Image.network(
-// //   [Image url]
-// //   fit:  BoxFit.cover,
-// // ),
-//                                     ),
-//                                   ),
-//                                   SizedBox(
-//                                     // rectangle108RjP (172:646)
-//                                     width: 218,
-//                                     height: 123,
-//                                     child: ClipRRect(
-//                                       borderRadius: BorderRadius.circular(20),
-// // child:
-// // Image.network(
-// //   [Image url]
-// //   fit:  BoxFit.cover,
-// // ),
-//                                     ),
-//                                   ),
+                            SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: Row(children: [
+                                _youtube(
+                                    'https://www.youtube.com/watch?v=lDWGPapR-_U'),
+                                _youtube(
+                                    'https://www.youtube.com/watch?v=lDWGPapR-_U'),
+                                _youtube(
+                                    'https://www.youtube.com/watch?v=lDWGPapR-_U'),
+                                _youtube(
+                                    'https://www.youtube.com/watch?v=lDWGPapR-_U'),
+                              ]),
+                            )
                           ],
                         ),
                       ),
