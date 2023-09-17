@@ -1,8 +1,11 @@
+import 'dart:ffi';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'signup.dart';
 import 'package:front/lowbar.dart';
+
+import 'package:syncfusion_flutter_gauges/gauges.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -10,6 +13,14 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  List<String> memos = [
+    '단일종목 투자보단 포트폴리오 분산으로 리스크 줄이기: 분산 방법 탐색',
+    '재무보고서를 통한 합리적인 기업분석',
+    '리스크 관리, 포트폴리오 다변화 등에 대한 기초 지식 익히기',
+  ];
+  TextEditingController _textEditingController = TextEditingController();
+  bool isWriting = false;
+
   Widget _Memo(String text) {
     return IntrinsicHeight(
       child: IntrinsicWidth(
@@ -31,28 +42,75 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _plusCircle() {
-    return Container(
-      width: 41,
-      height: 41,
-      decoration: ShapeDecoration(
-        color: Color(0xFFD3E7FE),
-        shape: OvalBorder(),
-        shadows: [
-          BoxShadow(
-            color: Color(0x3F000000),
-            blurRadius: 4,
-            offset: Offset(0, 2),
-            spreadRadius: 0,
-          )
-        ],
-      ),
+  Widget _MemoWrite() {
+    return Center(
       child: Container(
-          width: 25,
-          height: 25,
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(),
-          child: Image.asset('assets/plus.png')),
+        width: 315,
+        margin: EdgeInsets.only(top: 10),
+        padding: EdgeInsets.all(8),
+        decoration: BoxDecoration(
+          color: Color(0xfff5f5f5),
+          borderRadius: BorderRadius.circular(15),
+        ),
+        child: Row(
+          children: [
+            Expanded(
+              child: TextField(
+                controller: _textEditingController,
+                decoration: InputDecoration(
+                    border: InputBorder.none, hintText: "메모를 입력하세요"),
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  memos.add(_textEditingController.text);
+                  _textEditingController.clear();
+                  isWriting = false;
+                });
+              },
+              style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Color(0xff4F3993)),
+                  shape: MaterialStateProperty.all(RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15)))),
+              child: Text("확인"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _plusMemo() {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isWriting = true;
+        });
+      },
+      child: Container(
+        width: 41,
+        height: 41,
+        decoration: ShapeDecoration(
+          color: Color(0xFFD3E7FE),
+          shape: OvalBorder(),
+          shadows: [
+            BoxShadow(
+              color: Color(0x3F000000),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+              spreadRadius: 0,
+            )
+          ],
+        ),
+        child: Container(
+            width: 25,
+            height: 25,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(),
+            child: Image.asset('assets/plus.png')),
+      ),
     );
   }
 
@@ -160,6 +218,45 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget _goalGuage(double progressValue) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: SfRadialGauge(
+        axes: <RadialAxis>[
+          RadialAxis(
+            showLabels: false,
+            showTicks: false,
+            startAngle: 180,
+            endAngle: 0,
+            radiusFactor: 0.7,
+            canScaleToFit: true,
+            axisLineStyle: AxisLineStyle(
+              thickness: 0.1,
+              color: const Color.fromARGB(30, 0, 169, 181),
+              thicknessUnit: GaugeSizeUnit.factor,
+              cornerStyle: CornerStyle.startCurve,
+            ),
+            pointers: <GaugePointer>[
+              RangePointer(
+                value: progressValue,
+                width: 0.1,
+                sizeUnit: GaugeSizeUnit.factor,
+                cornerStyle: CornerStyle.bothCurve,
+                gradient: const SweepGradient(
+                  colors: <Color>[
+                    Color(0xffFED602),
+                    Color(0xffFF7A00),
+                  ],
+                  stops: <double>[0.5, 1],
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _SunriseSunset() {
     return Center(
       child: Container(
@@ -174,6 +271,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         child: Stack(
           children: [
+            _goalGuage(40),
             Positioned(
               child: Container(
                 margin: EdgeInsets.only(left: 21, top: 16),
@@ -288,7 +386,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Container(
             height: 8,
           ),
-          _plusCircle(),
+          _plusMemo(),
         ],
       ),
     );
@@ -357,17 +455,17 @@ class _HomeScreenState extends State<HomeScreen> {
                                     ),
                                   ),
                                   Container(
+                                    height: 260,
                                     child: SingleChildScrollView(
                                       child: Column(
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
-                                        children: [
-                                          _Memo(
-                                              '단일종목 투자보단 포트폴리오 분산으로 리스크 줄이기: 분산 방법 탐색'),
-                                          _Memo('재무보고서를 통한 합리적인 기업분석'),
-                                          _Memo('1234'),
-                                          _Memo('123512341235asdf'),
-                                        ],
+                                        children: memos
+                                            .map((memo) => _Memo(memo))
+                                            .toList()
+                                          ..add(isWriting
+                                              ? _MemoWrite()
+                                              : Container()),
                                       ),
                                     ),
                                   )
@@ -378,7 +476,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             Positioned(
                               child: Container(
                                 margin: EdgeInsets.fromLTRB(0, 520, 0, 0),
-                                child: Center(child: _plusCircle()),
+                                child: Center(child: _plusMemo()),
                               ),
                             ),
                             _SunriseSunset(),
