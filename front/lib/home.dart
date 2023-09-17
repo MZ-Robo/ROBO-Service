@@ -10,19 +10,21 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Widget _whatIs(String text) {
-    return IntrinsicWidth(
-      child: Container(
-        height: 46,
-        margin: EdgeInsets.fromLTRB(40, 10, 0, 10),
-        padding: const EdgeInsets.symmetric(horizontal: 20),
-        decoration: ShapeDecoration(
-          color: Colors.white,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
+  Widget _Memo(String text) {
+    return IntrinsicHeight(
+      child: IntrinsicWidth(
+        child: Container(
+          margin: EdgeInsets.fromLTRB(40, 10, 0, 10),
+          padding: EdgeInsets.all(10),
+          constraints: BoxConstraints(
+            maxWidth: 315.0, // 최대 너비 설정
           ),
-        ),
-        child: Center(
+          decoration: ShapeDecoration(
+            color: Colors.white,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+          ),
           child: Text(text),
         ),
       ),
@@ -354,10 +356,21 @@ class _HomeScreenState extends State<HomeScreen> {
                                       margin: EdgeInsets.fromLTRB(0, 250, 0, 0),
                                     ),
                                   ),
-                                  _whatIs('12341234'),
-                                  _whatIs('asdfqwerzxcv'),
-                                  _whatIs('1234'),
-                                  _whatIs('123512341235asdf'),
+                                  Container(
+                                    child: SingleChildScrollView(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          _Memo(
+                                              '단일종목 투자보단 포트폴리오 분산으로 리스크 줄이기: 분산 방법 탐색'),
+                                          _Memo('재무보고서를 통한 합리적인 기업분석'),
+                                          _Memo('1234'),
+                                          _Memo('123512341235asdf'),
+                                        ],
+                                      ),
+                                    ),
+                                  )
                                 ],
                               ),
                             ),

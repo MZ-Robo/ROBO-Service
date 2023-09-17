@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:front/home.dart';
+import 'package:front/lookAround.dart';
 
 class LowBarUnit extends StatelessWidget {
   @override
@@ -52,7 +53,7 @@ class LowBarUnit extends StatelessWidget {
               onTap: () {
                 // Navigator.push(
                 //   context,
-                //   MaterialPageRoute(builder: (context) => HomeScreen()),
+                //   MaterialPageRoute(builder: (context) => Look()),
                 // );
               },
               child: Column(children: [
@@ -82,10 +83,10 @@ class LowBarUnit extends StatelessWidget {
             height: 55,
             child: InkWell(
               onTap: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => HomeScreen()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LookAround()),
+                );
               },
               child: Column(children: [
                 Container(
