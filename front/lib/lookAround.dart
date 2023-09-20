@@ -117,11 +117,12 @@ class _LookAroundState extends State<LookAround> {
                   ),
                   Container(
                     margin: EdgeInsets.fromLTRB(0, 0, 0, 24),
+                    width: 235,
                     child: Text(
                       '$title',
                       style: TextStyle(
                         fontFamily: 'Pretendard',
-                        fontSize: 9.5,
+                        fontSize: 12,
                         fontWeight: FontWeight.w400,
                         height: 1.2575,
                         color: Color(0xff000000),
@@ -135,7 +136,6 @@ class _LookAroundState extends State<LookAround> {
               width: 80,
               height: 60,
               child: Image.network(
-                // 이미지를 URL에서 로드
                 imgUrl,
                 fit: BoxFit.fill,
               ),

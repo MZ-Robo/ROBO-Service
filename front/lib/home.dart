@@ -19,9 +19,10 @@ class _HomeScreenState extends State<HomeScreen> {
     '리스크 관리, 포트폴리오 다변화 등에 대한 기초 지식 익히기',
   ];
   TextEditingController _textEditingController = TextEditingController();
-  bool isWriting = false;
+  bool isWriteMemo = false;
+  bool isWriteTrading = false;
 
-  Widget _Memo(String text) {
+  Widget _MemoView(String text) {
     return IntrinsicHeight(
       child: IntrinsicWidth(
         child: Container(
@@ -66,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 setState(() {
                   memos.add(_textEditingController.text);
                   _textEditingController.clear();
-                  isWriting = false;
+                  isWriteMemo = false;
                 });
               },
               style: ButtonStyle(
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return GestureDetector(
       onTap: () {
         setState(() {
-          isWriting = true;
+          isWriteMemo = true;
         });
       },
       child: Container(
@@ -323,71 +324,312 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _weatherBox() {
-    return Container(
-      width: 73,
-      height: 170,
-      decoration: ShapeDecoration(
-        color: Colors.white,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(40),
+  Widget _plusTrading() {
+    return GestureDetector(
+      onTap: () {
+        // if (isWriteTrading) {
+        _tradingMemo(context);
+        // }11111155555555555
+      },
+      child: Container(
+        width: 41,
+        height: 41,
+        decoration: ShapeDecoration(
+          color: Color(0xFFD3E7FE),
+          shape: OvalBorder(),
+          shadows: [
+            BoxShadow(
+              color: Color(0x3F000000),
+              blurRadius: 4,
+              offset: Offset(0, 2),
+              spreadRadius: 0,
+            )
+          ],
         ),
-        shadows: [
-          BoxShadow(
-            color: Color(0x3F000000),
-            offset: Offset(1, 3),
-          ),
-        ],
+        child: Container(
+            width: 25,
+            height: 25,
+            clipBehavior: Clip.antiAlias,
+            decoration: BoxDecoration(),
+            child: Image.asset('assets/plus.png')),
       ),
-      child: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 21),
-            child: Text(
-              '08/13',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Color(0xFFB4B4B4),
-                fontSize: 14,
-                fontWeight: FontWeight.w600,
+    );
+  }
+
+  void _tradingMemo(BuildContext context) {
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: Colors.transparent,
+      builder: (BuildContext context) {
+        return ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(30),
+            topRight: Radius.circular(30),
+          ),
+          child: Container(
+            color: Color(0xFFD0E9FF),
+            height: 400,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    '매매일지 작성',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 18,
+                      fontFamily: 'Pretendard',
+                      fontWeight: FontWeight.w500,
+                      height: 0,
+                    ),
+                  ),
+                  SizedBox(height: 57),
+                  Container(
+                    height: 250,
+                    width: 300,
+                    // color: Colors.black,
+                    child: Row(
+                      children: [
+                        Container(
+                          width: 70,
+                          child: Column(
+                            children: [
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '*',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF5B5B),
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '종목명 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '*',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF5B5B),
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '매매단가 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '*',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF5B5B),
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '수량 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '*',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF5B5B),
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '매수/매도 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 40),
+                              Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '*',
+                                      style: TextStyle(
+                                        color: Color(0xFFFF5B5B),
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                    TextSpan(
+                                      text: '매매일자 ',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 15,
+                                        fontFamily: 'Pretendard',
+                                        fontWeight: FontWeight.w500,
+                                        height: 0,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              // Container(child: Row,),
+                              // Text(
+                              //   '*',
+                              //   style: TextStyle(
+                              //     color: Color(0xFFFF5B5B),
+                              //     fontSize: 15,
+                              //     fontFamily: 'Pretendard',
+                              //     fontWeight: FontWeight.w500,
+                              //     height: 0,
+                              //   ),
+                              // )
+                            ],
+                          ),
+                        ),
+                        SizedBox(
+                          width: 120,
+                        ),
+                        Container(
+                          width: 110,
+                          color: Colors.black,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            width: 32,
-            height: 13,
-            decoration: ShapeDecoration(
+        );
+      },
+    );
+  }
+
+  Widget _weatherBox() {
+    return GestureDetector(
+      child: Container(
+        width: 73,
+        height: 170,
+        decoration: ShapeDecoration(
+          color: Colors.white,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40),
+          ),
+          shadows: [
+            BoxShadow(
+              color: Color(0x3F000000),
+              offset: Offset(1, 3),
+            ),
+          ],
+        ),
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 21),
+              child: Text(
+                '08/13',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Color(0xFFB4B4B4),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              width: 32,
+              height: 13,
+              decoration: ShapeDecoration(
                 color: Color(0xFFD3E6FD),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20),
-                )),
-            child: Center(
-              child: Text(
-                '+0.55',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                    color: Color(0xFF0E3FF2), //수익 파랑, 손해 빨강
+                ),
+              ),
+              child: Center(
+                child: Text(
+                  '+0.55',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFF0E3FF2),
                     fontSize: 6,
-                    fontWeight: FontWeight.w600),
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 5),
-            // width: 46,
-            // height: 44,
-            color: Colors.white,
-            child: Image.asset(
-              'assets/Group9218.png',
-              fit: BoxFit.fill,
+            Container(
+              margin: EdgeInsets.only(top: 5),
+              color: Colors.white,
+              child: Image.asset(
+                'assets/Group9218.png',
+                fit: BoxFit.fill,
+              ),
             ),
-          ),
-          Container(
-            height: 8,
-          ),
-          _plusMemo(),
-        ],
+            Container(
+              height: 8,
+            ),
+            _plusTrading(),
+          ],
+        ),
       ),
     );
   }
@@ -461,9 +703,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                         crossAxisAlignment:
                                             CrossAxisAlignment.start,
                                         children: memos
-                                            .map((memo) => _Memo(memo))
+                                            .map((memo) => _MemoView(memo))
                                             .toList()
-                                          ..add(isWriting
+                                          ..add(isWriteMemo
                                               ? _MemoWrite()
                                               : Container()),
                                       ),
