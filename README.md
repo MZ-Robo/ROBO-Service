@@ -4,4 +4,4 @@
 
 MZ세대 로보어드바이저
 
-[시연영상] : (https://youtube.com/shorts/qP70we9g4oU?feature=share)
+[시연영상](https://youtube.com/shorts/qP70we9g4oU?feature=share)
